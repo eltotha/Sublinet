@@ -1,13 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
-import CatcoLogo from "../assets/CatcoLogo.png";
+import Logotipo from "../assets/logo.png";
 import { BackGround } from "../components/Styles/Body";
 import { BtnConfirm, ButtonContainer, Card, FormGroup, Header, Logo, TxtBox } from "../components/Styles/Login_Styles";
 
 // Colores de la paleta
-const PRIMARY_DARK_BLUE = "#14213d"; // Azul Oxford (Elegante, profesional)
-const ACCENT_ORANGE = "#fca311";     // Naranja Web (CTA, Energía)
-const WHITE = "#ffffff";             // Lo único blanco
-const SECONDARY_GREY_BLUE = "#457b9d"; // Azul Medio/Gris
+const PRIMARY_DARK_BLUE = "#0074D9";   // Azul principal
+const ACCENT_ORANGE = "#7FDBFF";       // Azul claro/acento
+const WHITE = "#ffffff";               // Fondo blanco
+const SECONDARY_GREY_BLUE = "#457b9d"; // Azul grisáceo
 
 function Register() {
     const navigate = useNavigate();
@@ -34,7 +34,7 @@ function Register() {
                 boxShadow: '0 10px 20px rgba(0, 0, 0, 0.3)' /* Sombra más fuerte para resaltar */
             }}>
                 <Header>
-                    <Logo src={CatcoLogo} alt="Catco Logo" />
+                    <Logo src={Logotipo} alt="Catco Logo" />
                     <label style={{ fontSize: "1.5rem", fontWeight: "bold", color: PRIMARY_DARK_BLUE, display: "block", marginTop: "0.5rem" }}>
                         Registro de Cuenta
                     </label>

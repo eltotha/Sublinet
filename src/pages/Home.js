@@ -3,13 +3,13 @@ import SideBars from '../components/SideBars';
 import Body from '../components/Styles/Body';
 import styled from 'styled-components';
 
-// --- Paleta de Colores Elegante y Profesional ---
-const PRIMARY_DARK_BLUE = '#14213d'; // Azul Oxford (Principal, texto oscuro)
-const ACCENT_ORANGE = '#fca311';     // Naranja Web (Acento, CTA)
-const CARD_BACKGROUND = '#29365bff';  //Fondo de tarjetas
-const CARD_TEXT = '#ffffff';        //Texto de las tarjetas
-const TEXT_DARK = '#ffffff93'; // Texto principal
-const TEXT_SECONDARY = '#457b9d';    // Azul/Gris secundario
+// --- Paleta de Colores --- //
+const PRIMARY_DARK_BLUE = "#0074D9";   // Azul intenso
+const HOVER_DARK_BLUE = "#457b9d";     // Azul grisáceo
+const ACCENT_COLOR = "#7FDBFF";        // Azul claro/acento
+const WHITE = "#ffffff";               // Fondo limpio
+const BACKGROUND_LIGHT = "#f5f7fa";    // Fondo claro para contraste
+const TEXT_SECONDARY = "#333333";      // Texto gris oscuro
 const DANGER_RED = '#dc2626';        // Rojo para eliminar
 const SUCCESS_GREEN = '#059669';     // Verde para el texto "disponible" del presupuesto
 
@@ -17,8 +17,8 @@ const SUCCESS_GREEN = '#059669';     // Verde para el texto "disponible" del pre
 const HomeContainer = styled.div`
   display: flex;
   height: 100vh;
-  /* 1. FONDO CON DEGRADADO AZUL/GRIS OSCURO */
-  background: linear-gradient(135deg, ${PRIMARY_DARK_BLUE} 0%, #0c1a2f 100%); 
+  /* Fondo claro con degradado sutil */
+  background: linear-gradient(135deg, ${BACKGROUND_LIGHT} 0%, ${HOVER_DARK_BLUE} 100%);
 `;
 
 const GridContainer = styled.div`
@@ -32,13 +32,13 @@ const GridContainer = styled.div`
 `;
 
 const Card = styled.div`
-  /* 2. LO ÚNICO BLANCO: La tarjeta */
-  background: ${CARD_BACKGROUND};
-  color: ${CARD_TEXT};
+  background: ${WHITE};
+  color: ${PRIMARY_DARK_BLUE};
   padding: 1.5rem;
-  border-radius: 1rem; /* Borde más redondeado */
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Sombra más pronunciada */
-  border: none; /* Se elimina el borde sutil */
+  border-radius: 1rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+              0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border: none;
 `;
 
 const StatNumber = styled.p`
@@ -59,27 +59,25 @@ const SectionTitle = styled.h2`
   font-size: 1.5rem;
   font-weight: bold;
   margin: 0 0 1rem 0;
-  color: ${CARD_TEXT}; /* Título de sección en blanco para el fondo oscuro */
+  color: ${PRIMARY_DARK_BLUE};
 `;
-
 
 const ProgressBar = styled.div`
   width: 100%;
-  background-color: #e0e0e0; /* Gris muy suave para el fondo (antes #457b9d) */
-  border-radius: 0.5rem; /* Menos redondeado */
-  height: 0.75rem; /* Un poco más alta (antes 0.5rem) */
-  margin: 0.5rem 0; /* Más margen */
+  background-color: #e0e0e0;
+  border-radius: 0.5rem;
+  height: 0.75rem;
+  margin: 0.5rem 0;
 `;
 
 const ProgressFill = styled.div`
-  background-color: ${props => props.fillColor || ACCENT_ORANGE}; 
+  background-color: ${props => props.fillColor || ACCENT_COLOR}; 
   height: 100%;
-  border-radius: 0.5rem; /* Coincide con el contenedor */
+  border-radius: 0.5rem;
   width: ${props => props.percentage}%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra para darle profundidad */
-  transition: width 0.4s ease-in-out; /* Transición suave para el efecto de llenado */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: width 0.4s ease-in-out;
 `;
-// ==========================================================
 
 const BudgetText = styled.span`
   font-size: 0.875rem;
@@ -94,8 +92,8 @@ const FlexBetween = styled.div`
 `;
 
 const Button = styled.button`
-  background-color: ${ACCENT_ORANGE}; 
-  color: ${PRIMARY_DARK_BLUE}; /* Texto oscuro en botón naranja */
+  background-color: ${ACCENT_COLOR}; 
+  color: ${PRIMARY_DARK_BLUE};
   border: none;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
@@ -105,38 +103,40 @@ const Button = styled.button`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 
   &:hover {
-    background-color: #e88d00; 
+    background-color: ${HOVER_DARK_BLUE}; 
+    color: ${WHITE};
   }
 `;
 
 const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
-  background: ${CARD_BACKGROUND}; /* 2. LO ÚNICO BLANCO: La tabla */
-  border-radius: 1rem; /* Borde más redondeado */
+  background: ${WHITE};
+  border-radius: 1rem;
   overflow: hidden;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); 
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+              0 4px 6px -2px rgba(0, 0, 0, 0.05); 
   border: none;
 `;
 
 const TableHeader = styled.thead`
-  background-color: ${CARD_BACKGROUND}; /* Fondo de cabecera gris claro */
-  color; inherit
+  background-color: ${WHITE};
+  color: inherit;
 `;
 
 const TableRow = styled.tr`
   border-bottom: 1px solid #e5e5e5;
   &:hover {
-    background-color: #f7f7f720; 
+    background-color: #f7f7f7; 
   }
 `;
 
 const TableHeaderCell = styled.th`
   padding: 0.75rem 1.5rem;
   text-align: left;
-  font-size: 0.875rem; /* Fuente ligeramente más grande */
+  font-size: 0.875rem;
   font-weight: 700; 
-  color: ${CARD_TEXT}; 
+  color: ${PRIMARY_DARK_BLUE}; 
   text-transform: uppercase;
   letter-spacing: 0.05em;
 `;
@@ -148,7 +148,7 @@ const TableCell = styled.td`
 `;
 
 const ActionButton = styled.button`
-  color: ${props => props.color};
+  color: ${props => props.color || PRIMARY_DARK_BLUE};
   background: none;
   border: none;
   cursor: pointer;
@@ -162,7 +162,6 @@ const ActionButton = styled.button`
   }
 `;
 
-//Contenido de Registra ventas
 const ProductImage = styled.img`
   width: 100%;
   height: 150px;
@@ -174,7 +173,7 @@ const ProductImage = styled.img`
 const ProductName = styled.h3`
   font-size: 1.125rem;
   font-weight: 600;
-  color: ${CARD_TEXT};
+  color: ${PRIMARY_DARK_BLUE};
   text-align: center;
   margin-bottom: 1rem;
 `;
@@ -188,7 +187,7 @@ const QuantityControl = styled.div`
 `;
 
 const QuantityButton = styled.button`
-  background-color: ${ACCENT_ORANGE};
+  background-color: ${ACCENT_COLOR};
   color: ${PRIMARY_DARK_BLUE};
   border: none;
   width: 32px;
@@ -201,12 +200,13 @@ const QuantityButton = styled.button`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 
   &:hover {
-    background-color: #e88d00;
+    background-color: ${HOVER_DARK_BLUE};
+    color: ${WHITE};
   }
 `;
 
 const QuantityText = styled.span`
-  color: ${CARD_TEXT};
+  color: ${PRIMARY_DARK_BLUE};
   font-size: 1.125rem;
   min-width: 20px;
   text-align: center;
@@ -237,7 +237,7 @@ const Home = ({ onLogout }) => {
   // ... (DashboardContent, InventoryContent, BudgetContent y renderContent sin cambios en la lógica)
   const DashboardContent = () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-      <SectionTitle>Dashboard</SectionTitle> {/* Nuevo título blanco */}
+      <SectionTitle>Dashboard</SectionTitle> 
       <GridContainer>
         <Card>
           <StatTitle>Productos en Inventario</StatTitle>
@@ -249,7 +249,7 @@ const Home = ({ onLogout }) => {
         </Card>
         <Card>
           <StatTitle>Stock Bajo</StatTitle>
-          <StatNumber color={ACCENT_ORANGE}>12</StatNumber>
+          <StatNumber color={ACCENT_COLOR}>12</StatNumber>
         </Card>
       </GridContainer>
 
@@ -258,8 +258,10 @@ const Home = ({ onLogout }) => {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           <div>
             <FlexBetween>
-              <BudgetText color={TEXT_DARK}>Presupuesto Utilizado</BudgetText>
-              <BudgetText color={TEXT_DARK}>${budgetData.used.toLocaleString()} / ${budgetData.total.toLocaleString()}</BudgetText>
+              <BudgetText color={HOVER_DARK_BLUE}>Presupuesto Utilizado</BudgetText>
+              <BudgetText color={HOVER_DARK_BLUE}>
+                ${budgetData.used.toLocaleString()} / ${budgetData.total.toLocaleString()}
+              </BudgetText>
             </FlexBetween>
             <ProgressBar>
               <ProgressFill percentage={(budgetData.used / budgetData.total) * 100} />
@@ -293,12 +295,12 @@ const Home = ({ onLogout }) => {
         <tbody>
           {inventoryData.map((item) => (
             <TableRow key={item.id}>
-              <TableCell style={{ fontWeight: '500', color: TEXT_DARK }}>{item.name}</TableCell>
+              <TableCell style={{ fontWeight: '500', color: HOVER_DARK_BLUE }}>{item.name}</TableCell>
               <TableCell color={TEXT_SECONDARY}>{item.category}</TableCell>
               <TableCell color={TEXT_SECONDARY}>{item.quantity}</TableCell>
               <TableCell color={TEXT_SECONDARY}>${item.price}</TableCell>
               <TableCell>
-                <ActionButton color={ACCENT_ORANGE}>Editar</ActionButton>
+                <ActionButton color={ACCENT_COLOR}>Editar</ActionButton>
                 <ActionButton color={DANGER_RED}>Eliminar</ActionButton>
               </TableCell>
             </TableRow>
@@ -317,19 +319,19 @@ const Home = ({ onLogout }) => {
           <StatTitle style={{ marginBottom: '1rem' }}>Resumen Presupuestario</StatTitle>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             <FlexBetween>
-              <BudgetText color={TEXT_DARK}>Presupuesto Total:</BudgetText>
+              <BudgetText color={HOVER_DARK_BLUE}>Presupuesto Total:</BudgetText>
               <BudgetText bold style={{ color: PRIMARY_DARK_BLUE, fontSize: '1.125rem' }}>
                 ${budgetData.total.toLocaleString()}
               </BudgetText>
             </FlexBetween>
             <FlexBetween>
-              <BudgetText color={TEXT_DARK}>Utilizado:</BudgetText>
-              <BudgetText bold style={{ color: ACCENT_ORANGE, fontSize: '1.125rem' }}>
+              <BudgetText color={HOVER_DARK_BLUE}>Utilizado:</BudgetText>
+              <BudgetText bold style={{ color: ACCENT_COLOR, fontSize: '1.125rem' }}>
                 ${budgetData.used.toLocaleString()}
               </BudgetText>
             </FlexBetween>
             <FlexBetween>
-              <BudgetText color={TEXT_DARK}>Disponible:</BudgetText>
+              <BudgetText color={HOVER_DARK_BLUE}>Disponible:</BudgetText>
               <BudgetText bold style={{ color: SUCCESS_GREEN, fontSize: '1.125rem' }}>
                 ${budgetData.remaining.toLocaleString()}
               </BudgetText>
@@ -342,18 +344,17 @@ const Home = ({ onLogout }) => {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
             <div>
               <FlexBetween>
-                <BudgetText color={TEXT_DARK}>Electrónicos</BudgetText>
-                <BudgetText color={TEXT_DARK}>65%</BudgetText>
+                <BudgetText color={HOVER_DARK_BLUE}>Electrónicos</BudgetText>
+                <BudgetText color={HOVER_DARK_BLUE}>65%</BudgetText>
               </FlexBetween>
               <ProgressBar>
-                {/* Se mantiene el ACCENT_ORANGE */}
-                <ProgressFill percentage={65} fillColor={ACCENT_ORANGE} /> 
+                <ProgressFill percentage={65} fillColor={ACCENT_COLOR} /> 
               </ProgressBar>
             </div>
             <div>
               <FlexBetween>
-                <BudgetText color={TEXT_DARK}>Accesorios</BudgetText>
-                <BudgetText color={TEXT_DARK}>25%</BudgetText>
+                <BudgetText color={HOVER_DARK_BLUE}>Accesorios</BudgetText>
+                <BudgetText color={HOVER_DARK_BLUE}>25%</BudgetText>
               </FlexBetween>
               <ProgressBar>
                 {/* Se mantiene el PRIMARY_DARK_BLUE */}
@@ -362,8 +363,8 @@ const Home = ({ onLogout }) => {
             </div>
             <div>
               <FlexBetween>
-                <BudgetText color={TEXT_DARK}>Otros</BudgetText>
-                <BudgetText color={TEXT_DARK}>10%</BudgetText>
+                <BudgetText color={HOVER_DARK_BLUE}>Otros</BudgetText>
+                <BudgetText color={HOVER_DARK_BLUE}>10%</BudgetText>
               </FlexBetween>
               <ProgressBar>
                 {/* Se mantiene el TEXT_SECONDARY */}

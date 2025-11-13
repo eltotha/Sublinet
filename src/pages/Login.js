@@ -1,17 +1,17 @@
 import { Link, useNavigate } from "react-router-dom";
-import CatcoLogo from "../assets/CatcoLogo.png";
+import Logotipo from "../assets/logo.png";
 import { BackGround } from "../components/Styles/Body";
 import { BtnConfirm, ButtonContainer, Card, CheckboxContainer, FormGroup, Header, Logo, TxtBox } from "../components/Styles/Login_Styles";
 
 // Colores de la paleta
-const PRIMARY_DARK_BLUE = "#14213d"; // Azul Oxford (Elegante, profesional)
-const ACCENT_ORANGE = "#fca311";     // Naranja Web (CTA, Energía)
-const WHITE = "#ffffff";             // Lo único blanco
-const SECONDARY_GREY_BLUE = "#457b9d"; // Azul Medio/Gris
+const PRIMARY_DARK_BLUE = "#0074D9";   // Azul principal
+const ACCENT_ORANGE = "#7FDBFF";       // Azul claro/acento
+const WHITE = "#ffffff";               // Fondo blanco
+const SECONDARY_GREY_BLUE = "#457b9d"; // Azul grisáceo
 
 function Login() {
     const navigate = useNavigate();
-
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         // Aquí iría la lógica de autenticación
@@ -20,21 +20,20 @@ function Login() {
 
     return (
         <BackGround style={{ 
-            /* 1. FONDO CON DEGRADADO AZUL/GRIS OSCURO */
             background: `linear-gradient(135deg, ${PRIMARY_DARK_BLUE} 0%, #0c1a2f 100%)`, 
             display: 'flex', 
             justifyContent: 'center', 
             alignItems: 'center' 
         }}> 
-            {/* Se asume que Card se importa de Login_Styles, si no existe ahí, se debe definir aquí */}
+
             <Card style={{
                 /* 2. LO ÚNICO BLANCO: La tarjeta */
                 background: WHITE,
-                borderRadius: '1.5rem', /* Borde más redondeado */
-                boxShadow: '0 10px 20px rgba(0, 0, 0, 0.3)' /* Sombra más fuerte para resaltar */
+                borderRadius: '1.5rem',
+                boxShadow: '0 10px 20px rgba(0, 0, 0, 0.3)'
             }}>
                 <Header>
-                    <Logo src={CatcoLogo} alt="Catco Logo" />
+                    <Logo src={Logotipo} alt="Catco Logo" />
                     <label style={{ fontSize: "1.5rem", fontWeight: "bold", color: PRIMARY_DARK_BLUE, display: "block", marginTop: "0.5rem" }}>
                         Inicio de Sesión
                     </label>

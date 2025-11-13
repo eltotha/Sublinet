@@ -2,17 +2,20 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 // --- Paleta de Colores ---
-const PRIMARY_DARK_BLUE = "#14213d";
-const HOVER_DARK_BLUE = "#1f3560";
-const ACCENT_ORANGE = "#fca311";
-const WHITE = "#ffffff";
+// Sidebar: azul marino muy oscuro (#0B1221)
+// Home/Body: fondo claro con acentos en azul intenso
+const PRIMARY_DARK_BLUE = "#0074D9";   // Azul intenso para títulos y bordes
+const HOVER_DARK_BLUE = "#457b9d";     // Azul grisáceo para hover y detalles
+const ACCENT_COLOR = "#7FDBFF";        // Azul claro para botones y acentos
+const WHITE = "#ffffff";               // Fondo limpio
+const BACKGROUND_LIGHT = "#f5f7fa";    // Fondo claro para diferenciar del sidebar
 
 // =====================
 // COMPONENTES ESTILIZADOS
 // =====================
 
 export const BackGround = styled.div`
-  background: linear-gradient(135deg, ${PRIMARY_DARK_BLUE} 0%, #0c1a2f 100%);
+  background: ${BACKGROUND_LIGHT}; /* Fondo claro para contraste */
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -28,9 +31,9 @@ const BodyContainer = styled.div`
 `;
 
 const Header = styled.header`
-  background: ${HOVER_DARK_BLUE};
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
-  border-bottom: 1px solid ${PRIMARY_DARK_BLUE};
+  background: #0074D9;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-bottom: 2px solid ${PRIMARY_DARK_BLUE};
   z-index: 10;
 `;
 
@@ -38,32 +41,34 @@ const Main = styled.main`
   flex: 1;
   overflow-y: auto;
   padding: 1rem;
-  background: ${PRIMARY_DARK_BLUE};
+  background: ${BACKGROUND_LIGHT};
 
   @media (min-width: 768px) {
     padding: 1.5rem;
   }
 `;
 
-// === NUEVOS COMPONENTES CARD Y BUTTON ===
+// === COMPONENTES CARD Y BUTTON ===
 export const Card = styled.div`
-  background-color: ${HOVER_DARK_BLUE};
-  color: ${WHITE};
+  background-color: ${WHITE};
+  color: ${PRIMARY_DARK_BLUE};
   border-radius: 0.75rem;
   padding: 1rem;
-  border: 1px solid #334155;
+  border: 1px solid ${PRIMARY_DARK_BLUE};
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 `;
 
 export const Button = styled.button`
-  background-color: ${ACCENT_ORANGE};
-  color: ${PRIMARY_DARK_BLUE};
+  background-color: ${PRIMARY_DARK_BLUE};
+  color: ${WHITE};
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
   border: none;
   cursor: pointer;
+  font-weight: 600;
 
   &:hover {
-    background-color: #e88d00;
+    background-color: ${HOVER_DARK_BLUE};
   }
 `;
 
@@ -76,16 +81,16 @@ const SearchWrapper = styled.div`
 
 const SearchInput = styled.input`
   padding: 0.65rem 1rem 0.65rem 2.5rem;
-  width: 22rem; /* más grande */
+  width: 22rem;
   border: 1px solid ${PRIMARY_DARK_BLUE};
   border-radius: 0.75rem;
   outline: none;
-  background-color: #1a2742; /* color de fondo nuevo */
-  color: ${WHITE};
+  background-color: ${WHITE};
+  color: ${PRIMARY_DARK_BLUE};
   font-size: 0.95rem;
 
   &::placeholder {
-    color: rgba(255, 255, 255, 0.6);
+    color: ${HOVER_DARK_BLUE};
   }
 `;
 
@@ -95,7 +100,7 @@ const SearchIcon = styled.span`
   top: 50%;
   transform: translateY(-50%);
   pointer-events: none;
-  color: rgba(255, 255, 255, 0.6);
+  color: ${HOVER_DARK_BLUE};
 `;
 
 // =====================
@@ -123,7 +128,7 @@ const Body = ({ children, toggleSidebar }) => {
               style={{
                 padding: "0.5rem",
                 borderRadius: "0.375rem",
-                color: WHITE,
+                color: PRIMARY_DARK_BLUE,
                 background: "none",
                 border: "none",
                 cursor: "pointer",
@@ -170,14 +175,14 @@ const Body = ({ children, toggleSidebar }) => {
               style={{
                 width: "2rem",
                 height: "2rem",
-                backgroundColor: ACCENT_ORANGE,
+                backgroundColor: ACCENT_COLOR,
                 borderRadius: "50%",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
               }}
             >
-              <span style={{ color: PRIMARY_DARK_BLUE, fontSize: "0.875rem", fontWeight: "500" }}>
+              <span style={{ color: WHITE, fontSize: "0.875rem", fontWeight: "500" }}>
                 U
               </span>
             </div>

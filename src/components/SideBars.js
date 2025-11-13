@@ -1,14 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import CatcoLogo from '../assets/CatcoLogo.png'; 
+import Icon from '../assets/icon.png';
+
 // --- Paleta de Colores ---
-// Cambio el color a un azul oscuro más profundo
-const PRIMARY_DARK_BLUE = '#0B1221'; 
-const ACCENT_ORANGE = '#fca311';
-const WHITE = '#ffffff';
-// Ajusto el color de HOVER para que contraste con el nuevo PRIMARY_DARK_BLUE
-const HOVER_DARK_BLUE = '#1f3560'; 
-const ACTIVE_DARK_TEXT = PRIMARY_DARK_BLUE;
+const PRIMARY_DARK_BLUE = '#0B1221';   // Azul intenso
+const WHITE = '#ffffff';               // Texto y fondo
+const HOVER_DARK_BLUE = '#457b9d';     // Azul grisáceo para hover
+const ACTIVE_DARK_TEXT = WHITE;
 
 const SidebarContainer = styled.div`
   position: fixed;
@@ -48,13 +46,12 @@ const NavButton = styled.button`
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  /* Estado Activo: Naranja de Acento con Texto Azul Oscuro */
-  background: ${props => props.active ? ACCENT_ORANGE : 'transparent'};
+  background: ${props => props.active ? HOVER_DARK_BLUE : 'transparent'};
   color: ${props => props.active ? ACTIVE_DARK_TEXT : WHITE};
   border: none;
 
   &:hover {
-    background: ${props => props.active ? ACCENT_ORANGE : HOVER_DARK_BLUE};
+    background: ${props => props.active ? HOVER_DARK_BLUE : HOVER_DARK_BLUE};
     color: ${props => props.active ? ACTIVE_DARK_TEXT : WHITE};
   }
 `;
@@ -102,9 +99,9 @@ const SideBars = ({ isOpen, toggleSidebar, activeView, setActiveView, onLogout }
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '4rem', padding: '0 1rem', borderBottom: `1px solid ${HOVER_DARK_BLUE}` }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             
-            <StyledLogo src={CatcoLogo} alt="Catco Logo" /> 
+            <StyledLogo src={Icon} alt="Catco Logo" /> 
             
-            <span style={{ fontSize: '1.25rem', fontWeight: 'bold', color: WHITE }}>Catco</span>
+            <span style={{ fontSize: '1.25rem', fontWeight: 'bold', color: WHITE }}>Sublinet</span>
           </div>
           <button 
             onClick={toggleSidebar}
