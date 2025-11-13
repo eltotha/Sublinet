@@ -222,10 +222,10 @@ const Home = ({ onLogout }) => {
   };
 
   const inventoryData = [
-    { id: 1, name: 'Laptop Dell XPS', category: 'Electrónicos', quantity: 15, price: 1200 },
-    { id: 2, name: 'Mouse Inalámbrico', category: 'Accesorios', quantity: 45, price: 25 },
-    { id: 3, name: 'Monitor 24"', category: 'Electrónicos', quantity: 20, price: 300 },
-    { id: 4, name: 'Teclado Mecánico', category: 'Accesorios', quantity: 30, price: 80 },
+    {id: 1, name: 'Camisa Azul', category: 'Ropa', quantity: 25, price: 20 },
+    { id: 2, name: 'Camisa Blanca', category: 'Ropa', quantity: 40, price: 18 },
+    { id: 3, name: 'Camisa Negra', category: 'Ropa', quantity: 30, price: 22 },
+    { id: 4, name: 'Camisa Roja', category: 'Ropa', quantity: 15, price: 19 },
   ];
 
   const budgetData = {
@@ -340,35 +340,42 @@ const Home = ({ onLogout }) => {
         </Card>
         
         <Card>
-          <StatTitle style={{ marginBottom: '1rem' }}>Distribución por Categorías</StatTitle>
+          <StatTitle style={{ marginBottom: '1rem' }}>Distribución por Colores</StatTitle>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
             <div>
               <FlexBetween>
-                <BudgetText color={HOVER_DARK_BLUE}>Electrónicos</BudgetText>
-                <BudgetText color={HOVER_DARK_BLUE}>65%</BudgetText>
+                <BudgetText color={HOVER_DARK_BLUE}>Camisa Azul</BudgetText>
+                <BudgetText color={HOVER_DARK_BLUE}>30%</BudgetText>
               </FlexBetween>
               <ProgressBar>
-                <ProgressFill percentage={65} fillColor={ACCENT_COLOR} /> 
+                <ProgressFill percentage={30} fillColor={ACCENT_COLOR} /> 
               </ProgressBar>
             </div>
             <div>
               <FlexBetween>
-                <BudgetText color={HOVER_DARK_BLUE}>Accesorios</BudgetText>
+                <BudgetText color={HOVER_DARK_BLUE}>Camisa Blanca</BudgetText>
                 <BudgetText color={HOVER_DARK_BLUE}>25%</BudgetText>
               </FlexBetween>
               <ProgressBar>
-                {/* Se mantiene el PRIMARY_DARK_BLUE */}
                 <ProgressFill percentage={25} fillColor={PRIMARY_DARK_BLUE} /> 
               </ProgressBar>
             </div>
             <div>
               <FlexBetween>
-                <BudgetText color={HOVER_DARK_BLUE}>Otros</BudgetText>
-                <BudgetText color={HOVER_DARK_BLUE}>10%</BudgetText>
+                <BudgetText color={HOVER_DARK_BLUE}>Camisa Negra</BudgetText>
+                <BudgetText color={HOVER_DARK_BLUE}>25%</BudgetText>
               </FlexBetween>
               <ProgressBar>
-                {/* Se mantiene el TEXT_SECONDARY */}
-                <ProgressFill percentage={10} fillColor={TEXT_SECONDARY} /> 
+                <ProgressFill percentage={25} fillColor={TEXT_SECONDARY} /> 
+              </ProgressBar>
+            </div>
+            <div>
+              <FlexBetween>
+                <BudgetText color={HOVER_DARK_BLUE}>Camisa Roja</BudgetText>
+                <BudgetText color={HOVER_DARK_BLUE}>20%</BudgetText>
+              </FlexBetween>
+              <ProgressBar>
+                <ProgressFill percentage={20} fillColor={SUCCESS_GREEN} /> 
               </ProgressBar>
             </div>
           </div>
@@ -377,12 +384,35 @@ const Home = ({ onLogout }) => {
     </div>
   );
 
+
   const SalesContent = () => {
     const [sales, setSales] = useState([
-      { id: 1, name: 'Laptop Dell XPS', image: 'https://i5.walmartimages.com/asr/df471863-0fd7-49ab-8585-2585245b1b24.fe6dc231ec9cd6b9862bd54d5933e13f.jpeg', sold: 0 },
-      { id: 2, name: 'Mouse Inalámbrico', image: 'https://sicsa.com.ni/wp-content/uploads/2025/04/1783_728.jpg', sold: 0 },
-      { id: 3, name: 'Monitor 24"', image: 'https://www.almacenestropigas.com/media/catalog/product/4/5/459351800010_1.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=700&width=700&canvas=700:700', sold: 0 },
-    ]);
+    { 
+      id: 1, 
+      name: 'Camisa Azul', 
+      image: 'https://images.unsplash.com/photo-1585386959984-a415522c3f8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 
+      sold: 0 
+    },
+    { 
+      id: 2, 
+      name: 'Camisa Blanca', 
+      image: 'https://images.unsplash.com/photo-1618354691373-9e3c9a3e6f6a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 
+      sold: 0 
+    },
+    { 
+      id: 3, 
+      name: 'Camisa Negra', 
+      image: 'https://images.unsplash.com/photo-1602810318383-9e3c9a3e6f6a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 
+      sold: 0 
+    },
+    { 
+      id: 4, 
+      name: 'Camisa Roja', 
+      image: 'https://images.unsplash.com/photo-1602810318383-9e3c9a3e6f6a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 
+      sold: 0 
+    },
+  ]);
+
 
     const handleIncrease = (id) => {
       setSales(prev =>
