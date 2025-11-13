@@ -390,25 +390,25 @@ const Home = ({ onLogout }) => {
     { 
       id: 1, 
       name: 'Camisa Azul', 
-      image: 'https://images.unsplash.com/photo-1585386959984-a415522c3f8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 
+      image: 'https://png.pngtree.com/png-vector/20240124/ourmid/pngtree-isolated-blue-t-shirt-png-image_11479977.png', 
       sold: 0 
     },
     { 
       id: 2, 
       name: 'Camisa Blanca', 
-      image: 'https://images.unsplash.com/photo-1618354691373-9e3c9a3e6f6a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 
+      image: 'https://png.pngtree.com/png-vector/20240815/ourmid/pngtree-classic-white-t-shirt-perfect-for-custom-printing-with-a-blank-png-image_13485404.png', 
       sold: 0 
     },
     { 
       id: 3, 
       name: 'Camisa Negra', 
-      image: 'https://images.unsplash.com/photo-1602810318383-9e3c9a3e6f6a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 
+      image: 'https://png.pngtree.com/png-vector/20240401/ourmid/pngtree-black-t-shirt-mockup-transparent-background-png-image_12256281.png', 
       sold: 0 
     },
     { 
       id: 4, 
       name: 'Camisa Roja', 
-      image: 'https://images.unsplash.com/photo-1602810318383-9e3c9a3e6f6a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 
+      image: 'https://static.vecteezy.com/system/resources/thumbnails/037/752/398/small/ai-generated-photo-of-clean-red-t-shirt-without-background-template-for-mockup-png.png', 
       sold: 0 
     },
   ]);
@@ -441,7 +441,7 @@ const Home = ({ onLogout }) => {
         <GridContainer>
           {sales.map(product => (
             <Card key={product.id}>
-              <ProductImage src={product.image} alt={product.name} />
+              <ProductImage src={product.image} alt={product.name}/>
               <ProductName>{product.name}</ProductName>
               <QuantityControl>
                 <QuantityButton onClick={() => handleDecrease(product.id)}>-</QuantityButton>
