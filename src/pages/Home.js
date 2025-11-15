@@ -31,6 +31,31 @@ const GridContainer = styled.div`
   }
 `;
 
+// --- ▼▼▼ NUEVO CONTENEDOR AÑADIDO (SOLO PARA VENTAS) ▼▼▼ ---
+const ProductGridContainer = styled.div`
+  display: grid;
+  gap: 1.5rem;
+  /*
+    Esto crea una cuadrícula responsiva:
+    - auto-fit: Llena la fila con tantas columnas como quepan.
+    - minmax(280px, 1fr): Cada columna tendrá un mínimo de 280px
+      y crecerá para ocupar el espacio disponible (1fr).
+  */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+`;
+// --- ▲▲▲ FIN DEL NUEVO CONTENEDOR ▲▲▲ ---
+
+const BillingGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  
+  @media (min-width: 1024px) {
+    /* En pantallas grandes, 2/3 para el pago, 1/3 para métodos */
+    grid-template-columns: 2fr 1fr;
+  }
+`;
+
 const Card = styled.div`
   background: ${WHITE};
   color: ${PRIMARY_DARK_BLUE};
@@ -108,6 +133,18 @@ const Button = styled.button`
   }
 `;
 
+const PaymentButton = styled(Button)`
+  background-color: ${SUCCESS_GREEN};
+  color: ${WHITE};
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1.125rem; /* Más grande para que resalte */
+
+  &:hover {
+    background-color: #047857; /* Verde más oscuro */
+  }
+`;
+
 const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
@@ -145,6 +182,7 @@ const TableCell = styled.td`
   padding: 1rem 1.5rem;
   font-size: 0.875rem;
   color: ${props => props.color || 'inherit'}; 
+  vertical-align: middle; 
 `;
 
 const ActionButton = styled.button`
@@ -234,7 +272,7 @@ const Home = ({ onLogout }) => {
     remaining: 21500
   };
 
-  // ... (DashboardContent, InventoryContent, BudgetContent y renderContent sin cambios en la lógica)
+  // --- ▼▼▼ CÓDIGO RESTAURADO ▼▼▼ ---
   const DashboardContent = () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
       <SectionTitle>Dashboard</SectionTitle> 
@@ -332,7 +370,7 @@ const Home = ({ onLogout }) => {
             </FlexBetween>
             <FlexBetween>
               <BudgetText color={HOVER_DARK_BLUE}>Disponible:</BudgetText>
-              <BudgetText bold style={{ color: SUCCESS_GREEN, fontSize: '1.125rem' }}>
+              <BudgetText bold style={{ color: SUCCESS_GREEN, fontSize: '1.tran' }}>
                 ${budgetData.remaining.toLocaleString()}
               </BudgetText>
             </FlexBetween>
@@ -383,8 +421,10 @@ const Home = ({ onLogout }) => {
       </div>
     </div>
   );
+  // --- ▲▲▲ FIN DEL CÓDIGO RESTAURADO ▲▲▲ ---
 
 
+  // --- ▼▼▼ "SalesContent" MODIFICADO ▼▼▼ ---
   const SalesContent = () => {
     const [sales, setSales] = useState([
     { 
@@ -438,7 +478,9 @@ const Home = ({ onLogout }) => {
     return(
       <div>
         <SectionTitle>Registrar Ventas</SectionTitle>
-        <GridContainer>
+        
+        {/* --- Se usa el nuevo "ProductGridContainer" --- */}
+        <ProductGridContainer>
           {sales.map(product => (
             <Card key={product.id}>
               <ProductImage src={product.image} alt={product.name}/>
@@ -453,10 +495,137 @@ const Home = ({ onLogout }) => {
               </Button>
             </Card>
           ))}
-        </GridContainer>
+        </ProductGridContainer>
       </div>
     );
   };
+  // --- ▲▲▲ FIN DE "SalesContent" MODIFICADO ▲▲▲ ---
+
+
+  const BillingContent = () => {
+    
+    // Datos de ejemplo para la factura pendiente
+    const pendingInvoice = {
+      id: "#1025",
+      client: "Cliente Ejemplo 2",
+      date: "15/11/2025",
+      amount: 85.50,
+      status: "Pendiente"
+    };
+
+    const handlePayment = () => {
+      // En un futuro, aquí se abriría Stripe, PayPal, etc.
+      alert(`Iniciando proceso de pago para la factura ${pendingInvoice.id} por $${pendingInvoice.amount}`);
+    };
+
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+        <SectionTitle>Gestión de Facturación</SectionTitle>
+        
+        <GridContainer>
+          <Card>
+            <StatTitle>Facturas Emitidas</StatTitle>
+            <StatNumber>120</StatNumber>
+          </Card>
+          <Card>
+            <StatTitle>Facturas Pendientes</StatTitle>
+            <StatNumber color={DANGER_RED}>5</StatNumber>
+          </Card>
+          <Card>
+            <StatTitle>Ingresos (Este Mes)</StatTitle>
+            <StatNumber color={SUCCESS_GREEN}>$4,500</StatNumber>
+          </Card>
+        </GridContainer>
+
+        <BillingGrid>
+          
+          <Card style={{ background: `linear-gradient(135deg, ${PRIMARY_DARK_BLUE}, ${HOVER_DARK_BLUE})`, color: WHITE }}>
+            <StatTitle style={{ color: WHITE, borderBottom: `1px solid ${ACCENT_COLOR}`, paddingBottom: '0.5rem' }}>Pagar Factura Pendiente</StatTitle>
+            <div style={{ marginTop: '1.5rem' }}>
+              <FlexBetween style={{ marginBottom: '1rem' }}>
+                <span style={{ fontSize: '1rem', color: ACCENT_COLOR }}>Factura ID:</span>
+                <span style={{ fontSize: '1.125rem', fontWeight: '600' }}>{pendingInvoice.id}</span>
+              </FlexBetween>
+              <FlexBetween style={{ marginBottom: '1.5rem' }}>
+                <span style={{ fontSize: '1rem', color: ACCENT_COLOR }}>Cliente:</span>
+                <span style={{ fontSize: '1.125rem', fontWeight: '600' }}>{pendingInvoice.client}</span>
+              </FlexBetween>
+              
+              <div style={{ textAlign: 'center', margin: '2rem 0' }}>
+                <span style={{ fontSize: '1.125rem', color: ACCENT_COLOR }}>MONTO A PAGAR</span>
+                <p style={{ fontSize: '2.5rem', fontWeight: 'bold', margin: '0.5rem 0', color: WHITE }}>
+                  ${pendingInvoice.amount.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+                </p>
+                <span style={{ fontSize: '0.875rem', color: '#fecaca' /* Rojo claro */ }}>Vence: {pendingInvoice.date}</span>
+              </div>
+
+              <PaymentButton onClick={handlePayment}>
+                Pagar Ahora
+              </PaymentButton>
+            </div>
+          </Card>
+
+          <Card>
+            <StatTitle style={{ borderBottom: `1px solid ${HOVER_DARK_BLUE}`, paddingBottom: '0.5rem' }}>Métodos de Pago</StatTitle>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1.5rem' }}>
+              <p style={{ fontSize: '0.875rem', color: TEXT_SECONDARY, margin: 0 }}>
+                Aceptamos las principales tarjetas de crédito y débito.
+              </p>
+              <div style={{ display: 'flex', gap: '0.5rem', fontSize: '2.5rem', color: PRIMARY_DARK_BLUE }}>
+                <span>💳</span>
+                <span>💳</span>
+                <span>💳</span>
+              </div>
+              <Button style={{ width: '100%', background: HOVER_DARK_BLUE, color: WHITE }}>
+                Administrar Métodos
+              </Button>
+            </div>
+          </Card>
+        </BillingGrid>
+
+
+        <div style={{marginTop: '1.5rem'}}>
+          <StatTitle style={{color: PRIMARY_DARK_BLUE, fontSize: '1.25rem'}}>Historial de Facturas</StatTitle>
+          <Table>
+            <TableHeader>
+              <tr>
+                <TableHeaderCell>ID Factura</TableHeaderCell>
+                <TableHeaderCell>Cliente</TableHeaderCell>
+                <TableHeaderCell>Fecha</TableHeaderCell>
+                <TableHeaderCell>Monto</TableHeaderCell>
+                <TableHeaderCell>Estado</TableHeaderCell>
+              </tr>
+            </TableHeader>
+            <tbody>
+              <TableRow>
+                <TableCell style={{ fontWeight: '500', color: HOVER_DARK_BLUE }}>#1024</TableCell>
+                <TableCell color={TEXT_SECONDARY}>Cliente Ejemplo 1</TableCell>
+                <TableCell color={TEXT_SECONDARY}>14/11/2025</TableCell>
+                <TableCell color={TEXT_SECONDARY}>$150.00</TableCell>
+                <TableCell>
+                  <span style={{ color: SUCCESS_GREEN, background: '#D1FAE5', padding: '0.25rem 0.75rem', borderRadius: '99px', fontSize: '0.75rem', fontWeight: 600 }}>
+                    Pagada
+                  </span>
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell style={{ fontWeight: '500', color: HOVER_DARK_BLUE }}>{pendingInvoice.id}</TableCell>
+                <TableCell color={TEXT_SECONDARY}>{pendingInvoice.client}</TableCell>
+                <TableCell color={TEXT_SECONDARY}>{pendingInvoice.date}</TableCell>
+                <TableCell color={TEXT_SECONDARY}>${pendingInvoice.amount.toLocaleString('en-US', { minimumFractionDigits: 2 })}</TableCell>
+                <TableCell>
+                  <span style={{ color: DANGER_RED, background: '#FEE2E2', padding: '0.25rem 0.75rem', borderRadius: '99px', fontSize: '0.75rem', fontWeight: 600 }}>
+                    {pendingInvoice.status}
+                  </span>
+                </TableCell>
+              </TableRow>
+            </tbody>
+          </Table>
+        </div>
+      </div>
+    );
+  };
+
 
   const renderContent = () => {
     switch (activeView) {
@@ -467,7 +636,9 @@ const Home = ({ onLogout }) => {
       case 'budget':
         return <BudgetContent />;
       case 'sales':
-      return <SalesContent />;
+        return <SalesContent />;
+      case 'billing':
+        return <BillingContent />;
       default:
         return <DashboardContent />;
     }
