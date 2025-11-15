@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import FacturaTiendaCompleta, { generarPDF } from '../components/BillInvoice/BillPDF';
 import SideBars from '../components/SideBars';
 import Body from '../components/Styles/Body';
 import styled from 'styled-components';
@@ -513,11 +514,6 @@ const Home = ({ onLogout }) => {
       status: "Pendiente"
     };
 
-    const handlePayment = () => {
-      // En un futuro, aquí se abriría Stripe, PayPal, etc.
-      alert(`Iniciando proceso de pago para la factura ${pendingInvoice.id} por $${pendingInvoice.amount}`);
-    };
-
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
         <SectionTitle>Gestión de Facturación</SectionTitle>
@@ -559,7 +555,7 @@ const Home = ({ onLogout }) => {
                 <span style={{ fontSize: '0.875rem', color: '#fecaca' /* Rojo claro */ }}>Vence: {pendingInvoice.date}</span>
               </div>
 
-              <PaymentButton onClick={handlePayment}>
+              <PaymentButton onClick={generarPDF}>
                 Pagar Ahora
               </PaymentButton>
             </div>
